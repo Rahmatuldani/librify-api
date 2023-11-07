@@ -11,7 +11,17 @@ app.use(express.raw({ type: "application/vnd.custom-type" }));
 app.use(express.text({ type: "text/html" }));
 
 app.get("/", async (req, res) => {
-  res.json({ message: "Please visit /countries to view all the countries" });
+  res.json({
+    url: 'librify-api.up.railway.app/api',
+    node: {
+      users: {
+        getUser: {
+          path: '/users',
+          method: 'GET'
+        }
+      }
+    }
+  });
 });
 
 app.use("/api", routers);
