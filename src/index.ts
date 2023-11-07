@@ -14,9 +14,36 @@ app.get("/", async (req, res) => {
   res.json({
     url: 'librify-api.up.railway.app/api',
     node: {
+      auth: {
+        path: '/auth',
+        login: {
+          path: '/login',
+          method: 'POST',
+          body: {
+            email: 'type string, email, required',
+            password: 'type string, min length 6 characters long, required'
+          }
+        },
+        register: {
+          path: '/register',
+          method: 'POST',
+          body: {
+            nik: 'type string, required',
+            name: 'type string, required',
+            email: 'type string, email, required',
+            password: 'type string, min length 6 characters long, required'
+          }
+        }
+      },
       users: {
-        getUser: {
+        getUsers: {
           path: '/users',
+          method: 'GET'
+        }
+      },
+      books: {
+        getBooks: {
+          path: '/books',
           method: 'GET'
         }
       }
@@ -29,3 +56,5 @@ app.use("/api", routers);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+export default app
