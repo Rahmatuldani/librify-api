@@ -13,6 +13,9 @@ app.use(express.text({ type: "text/html" }));
 app.get("/", async (req, res) => {
   res.json({
     url: 'librify-api.up.railway.app/api',
+    authorization: {
+      Bearer: 'secretpassword',
+    },
     node: {
       auth: {
         path: '/auth',
@@ -45,6 +48,22 @@ app.get("/", async (req, res) => {
         getBooks: {
           path: '/books',
           method: 'GET'
+        },
+        addBook: {
+          path: '/books',
+          method: 'POST',
+          authorization: true
+        }
+      },
+      borrows: {
+        getBorrows: {
+          path: '/borrows',
+          method: 'GET',
+        },
+        addBorrow: {
+          path: '/borrows',
+          method: 'POST',
+          authorization: true
         }
       }
     }
