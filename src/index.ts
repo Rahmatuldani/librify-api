@@ -52,7 +52,17 @@ app.get("/", async (req, res) => {
         addBook: {
           path: '/books',
           method: 'POST',
-          authorization: true
+          authorization: true,
+          body: {
+            isbn: "type number, unique, required",
+            year: "type number, required",
+            title: "type string, required",
+            genre: "type string[], required",
+            author: "type string[], required",
+            publisher: "type string, required",
+            desc: "type string, required",
+            price: "type number, required"
+          }
         }
       },
       borrows: {
@@ -63,7 +73,12 @@ app.get("/", async (req, res) => {
         addBorrow: {
           path: '/borrows',
           method: 'POST',
-          authorization: true
+          authorization: true,
+          body: {
+            userId: "type string, required",
+            bookId: "type string, required",
+            quantity: "type number, required"
+          }
         }
       }
     }
