@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-
-interface IBook {
+interface IBook extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
   isbn: number;
   year: number;
@@ -13,7 +12,7 @@ interface IBook {
   price: number;
 }
 
-const BookSchema = new mongoose.Schema({
+const BookSchema: mongoose.Schema = new mongoose.Schema<IBook>({
   isbn: {
     type: Number,
     unique: true,

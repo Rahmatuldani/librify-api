@@ -27,7 +27,17 @@ async function createBook(req: any, res: any) {
     }
 }
 
+async function deleteBook(req: any, res: any) {
+    try {
+        await BookModel.deleteMany();
+        return response(res, { message: 'Delete book success' })
+    } catch (error) {
+        return response(res, { status: 500, message: `Delete book failed ${error}` })
+    }
+}
+
 export {
     getBooks,
     createBook,
+    deleteBook,
 }

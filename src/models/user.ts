@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IUser {
+interface IUser extends mongoose.Document {
     _id: mongoose.Types.ObjectId;
     nik: string;
     name: string;
@@ -9,7 +9,7 @@ interface IUser {
     password: string;
 }
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema<IUser>({
     nik: String,
     name: String,
     email: String,

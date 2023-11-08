@@ -79,8 +79,22 @@ const validateBook = [
     }
 ]
 
+const validateBorrow = [
+    check('userId').not().isEmpty().withMessage('User ID is required'),
+    check('bookId').not().isEmpty().withMessage('Book ID is required'),
+
+    (req: any, res: any, next: any) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return response(res, { status: 400, message: errors.array()[0].msg })
+        }
+        next();
+    }
+]
+
 export {
     validateLogin,
     validateRegister,
     validateBook,
+    validateBorrow,
 }
