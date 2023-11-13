@@ -1,4 +1,5 @@
 import "./lib/db";
+import cors from 'cors';
 import express from "express";
 import routers from "./routers";
 require('dotenv').config({ path: '.env.local' });
@@ -7,6 +8,7 @@ const app = express();
 const port = process.env.PORT || 3333;
 
 app.use(express.json());
+app.use(cors());
 app.use(express.raw({ type: "application/vnd.custom-type" }));
 app.use(express.text({ type: "text/html" }));
 
